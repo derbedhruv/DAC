@@ -8,6 +8,9 @@ int del=0; // used for various delays
 word outputValue = 0; // a word is a 16-bit number
 byte data = 0; // and a byte is an 8-bit number
 
+// global variables for processing...
+int last_filteredValue = 0, filteredValue = 0;;
+
 void setup()
 {
   //set pin(s) to input and output
@@ -30,7 +33,15 @@ void outputKaro(int output) {
 
 void loop()
 {
-    int a = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
-    outputKaro(a);
+    last_filteredValue = filteredValue;
+    
+    // read shit in...
+    int currentValue = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
+    
+    // enter processing here...
+    filteredValue = last_filteredValue + 0.004*(currentValue - last_filteredValue);
+    
+    // then we shall send it out to SPI...
+    outputKaro(filteredValue);
     
 }
