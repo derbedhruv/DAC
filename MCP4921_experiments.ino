@@ -39,7 +39,8 @@ void loop()
     int currentValue = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
     
     // enter processing here...
-    filteredValue = last_filteredValue + 0.00064*(currentValue - last_filteredValue);
+    // Made the multiplication factor 0.00016 (multiple of 4) for a better freq response
+    filteredValue = last_filteredValue + 0.00016*(currentValue - last_filteredValue);
     
     // then we shall send it out to SPI...
     outputKaro(filteredValue);
