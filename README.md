@@ -1,4 +1,4 @@
 DAC
 ===
 
-All experiments with DACs on the arduino and similiar systems
+This particular ino file on this branch will deal with outputting single voltages from the arduino.
