@@ -18,8 +18,7 @@ void setup()
 
 void loop()
 {
-    float voltage = 2.0;  // the actual voltage that we want out, in floating point decimal
-    int a = (voltage/5.0)*4096;  // the 12-bit representation of the voltage we want to send out
+    int a = (analogRead(14)/1024)*4096;  // the 12-bit representation of the signal coming from th ADC
     outputValue = a;
     digitalWrite(10, LOW);
     data = highByte(outputValue);
