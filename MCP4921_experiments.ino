@@ -18,8 +18,8 @@ void setup()
 
 void loop()
 {
-    float voltage = 3.3;  // the actual voltage that we want out, in floating point decimal
-    int a = (3.3/5.0)*4096;  // the 12-bit representation of the voltage we want to send out
+    float voltage = 2.0;  // the actual voltage that we want out, in floating point decimal
+    int a = (voltage/5.0)*4096;  // the 12-bit representation of the voltage we want to send out
     outputValue = a;
     digitalWrite(10, LOW);
     data = highByte(outputValue);
