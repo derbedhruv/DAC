@@ -18,7 +18,7 @@ void setup()
 
 void loop()
 {
-    int a = (analogRead(14)/1024)*4096;  // the 12-bit representation of the signal coming from th ADC
+    int a = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
     outputValue = a;
     digitalWrite(10, LOW);
     data = highByte(outputValue);
