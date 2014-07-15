@@ -9,7 +9,7 @@ word outputValue = 0; // a word is a 16-bit number
 byte data = 0; // and a byte is an 8-bit number
 
 // global variables for processing...
-int last_filteredValue = 0, filteredValue = 0;;
+float last_filteredValue = 0,   filteredValue = 0;;
 
 void setup()
 {
@@ -19,7 +19,7 @@ void setup()
   SPI.setBitOrder(MSBFIRST);
 }
 
-void outputKaro(int output) {
+void outputKaro(float output) {
     outputValue = output;   // converting an int to a word
     digitalWrite(10, LOW);
     data = highByte(outputValue);
@@ -39,7 +39,7 @@ void loop()
     int currentValue = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
     
     // enter processing here...
-    filteredValue = last_filteredValue + 0.004*(currentValue - last_filteredValue);
+    filteredValue = last_filteredValue + 0.00064*(currentValue - last_filteredValue);
     
     // then we shall send it out to SPI...
     outputKaro(filteredValue);
