@@ -16,10 +16,8 @@ void setup()
   SPI.setBitOrder(MSBFIRST);
 }
 
-void loop()
-{
-    int a = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
-    outputValue = a;
+void outputKaro(int output) {
+    outputValue = output;   // converting an int to a word
     digitalWrite(10, LOW);
     data = highByte(outputValue);
     data = 0b00001111 & data;
@@ -27,6 +25,12 @@ void loop()
     SPI.transfer(data);
     data = lowByte(outputValue);
     SPI.transfer(data);
-    digitalWrite(10, HIGH);
-  
+    digitalWrite(10, HIGH);  
+}
+
+void loop()
+{
+    int a = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
+    outputKaro(a);
+    
 }
