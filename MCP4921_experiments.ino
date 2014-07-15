@@ -29,34 +29,5 @@ void loop()
     data = lowByte(outputValue);
     SPI.transfer(data);
     digitalWrite(10, HIGH);
-  /*
-  for (int a=0; a<=4095; a++)
-  {
-    outputValue = a;
-    digitalWrite(10, LOW);
-    data = highByte(outputValue);
-    data = 0b00001111 & data;
-    data = 0b00110000 | data;
-    SPI.transfer(data);
-    data = lowByte(outputValue);
-    SPI.transfer(data);
-    digitalWrite(10, HIGH);
-    delay(del);
-  }
-  delay(del+25);
-  for (int a=4095; a>=0; --a)
-  {
-    outputValue = a;
-    digitalWrite(10, LOW);
-    data = highByte(outputValue);
-    data = 0b00001111 & data;
-    data = 0b00110000 | data;
-    SPI.transfer(data);
-    data = lowByte(outputValue);
-    SPI.transfer(data);
-    digitalWrite(10, HIGH);
-    delay(del);
-  }
-  delay(del+25);
-  */
+  
 }
