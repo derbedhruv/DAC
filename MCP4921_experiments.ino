@@ -9,7 +9,7 @@ word outputValue = 0; // a word is a 16-bit number
 byte data = 0; // and a byte is an 8-bit number
 
 // global variables for processing...
-float last_filteredValue = 0,   filteredValue = 0;;
+float last_filteredValue = 0.0,   filteredValue = 0.0, last_value = 0.0, currentValue = 0.0;
 
 void setup()
 {
@@ -34,13 +34,14 @@ void outputKaro(float output) {
 void loop()
 {
     last_filteredValue = filteredValue;
+    last_value = currentValue;
     
-    // read shit in...
-    int currentValue = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
-    
+    // read shit in...and convert to 12-bit from 10-bit asap
+    currentValue = (float) analogRead(14)*4; 
+        
     // enter processing here...
     // using the DC IIR filter which was given in the Texas instruments implementation of the whole thing...
-    filteredValue = 0.992*last_filteredValue + currentValue - last_filteredValue;
+    filteredValue = 1024 + 0.992*last_filteredValue + currentValue - last_value;
     
     // then we shall send it out to SPI...
     outputKaro(filteredValue);
