@@ -39,8 +39,8 @@ void loop()
     int currentValue = analogRead(14)*4;  // the 12-bit representation of the signal coming from th ADC
     
     // enter processing here...
-    // Made the multiplication factor 0.00016 (multiple of 4) for a better freq response
-    filteredValue = last_filteredValue + 0.00016*(currentValue - last_filteredValue);
+    // using the DC IIR filter which was given in the Texas instruments implementation of the whole thing...
+    filteredValue = 0.992*last_filteredValue + currentValue - last_filteredValue;
     
     // then we shall send it out to SPI...
     outputKaro(filteredValue);
